@@ -39,7 +39,25 @@ def getpdata():
 		return False
 	else:
 		return rows
-		
+
+def pqclean():
+	conn=dbConnect()
+	c=conn.cursor()
+	cout=c.execute('DELETE FROM phashes_q WHERE EXISTS( SELECT 1 FROM VT Where phashes_q.md5 = VT.md5)')
+	print(cout.fetchall())
+	conn.commit()
+	conn.close()
+	return
+
+def unprocessedhandling(h):
+	conn=dbConnect()
+	c=conn.cursor()
+	for hash in h:
+		c.execute('UPDATE VT set notinvt = {} WHERE md5="{}";'.format(1,hash))
+		conn.commit()
+	conn.close()
+	return
+	
 def getdata(hash,apikey):
 	params = {'apikey': apikey, 'resource':hash}
 	headers = {"Accept-Encoding": "gzip, deflate","User-Agent" : "gzip,  My Python requests library example client or username"}
@@ -63,12 +81,14 @@ def getdata(hash,apikey):
 def checkvt(lines):
 	apikeys=['08074dd7e431fa9f6bc342947e4707099c4adcfb4b72090286ed24fc9437f95f','924d105b1634c233f2f72d890fd1340b98cefafe6ef6939f2c88e9cf4eecdf47','c476f9625b273f5e4b4f3c3c4e8adbc33899cf2bcdc695b0ba8cb30cdd01b7f1']
 	#print("Got the keys and list"+str(lines))
-	if len(apikeys) <= 6 :
+	if len(apikeys) <= 14 :
 		waitime = (60 - len(apikeys) * 4)
 	else:
-		waitime = 0
+		waitime = 3
 	el_flag=True
 	hashes = iter(lines)
+	unprocessed=[]
+	notinvt=[]
 	#print(lines)
 	try:
 		while el_flag:
@@ -101,6 +121,7 @@ def checkvt(lines):
 						notinvt.append(hash)
 					elif isinstance(response_dict,dict) and response_dict.get("response_code") == -2:
 						print("In queue for scanning")
+						unprocessed.append(hash)
 					elif isinstance(response_dict,dict) and response_dict.get("response_code") == 1:
 						# Hashes
 						sample_info["md5"] = response_dict.get("md5")
@@ -121,9 +142,14 @@ def checkvt(lines):
 				time.sleep(1)
 	except:
 		pass
+	print("unprocessed hashes "+str(unprocessed ))
+	print("Hashes in Not in VT"+str(notinvt))
+	#pqclean()
+	
 pdat = 	getpdata()		
 if pdat == False:
 	pass
 else:
 	l=[h[0] for h in pdat] 
+	print("Statrting the hash calculation process total hashes in the queue"+str(len(l)))
 	checkvt(l)
