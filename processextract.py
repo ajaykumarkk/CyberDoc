@@ -22,7 +22,7 @@ def dbConnect():
 def dbCreate():
 	conn=dbConnect()
 	conn.execute(''' CREATE TABLE if not exists Bad_Hash (id INTEGER PRIMARY KEY AUTOINCREMENT ,md5 STRING);''')
-	conn.execute(''' CREATE TABLE if not exists VT (id INTEGER PRIMARY KEY AUTOINCREMENT ,md5 STRING,total INTEGER,pos INTEGER );''')
+	conn.execute(''' CREATE TABLE if not exists VT (id INTEGER PRIMARY KEY AUTOINCREMENT ,md5 STRING,total INTEGER,pos INTEGER,notinvt INTEGER);''')
 	conn.execute(''' CREATE TABLE if not exists phashes_q (id INTEGER PRIMARY KEY AUTOINCREMENT ,md5 STRING, UNIQUE(md5));''')
 
 	#conn.execute(''' CREATE TABLE if not exists Drives (id INTEGER PRIMARY KEY AUTOINCREMENT ,DriveName STRING,FileSystem STRING,Serial STRING,Size STRING);''')
@@ -62,6 +62,16 @@ def dbsearch(d):
 		return False
 	else:
 		return True
+		
+def getVT(d):
+	conn=dbConnect()
+	c=conn.cursor()
+	cout=c.execute('select pos from VT where md5 = "'+d+'";')
+	rows = cout.fetchall()
+	if len(rows) == 0:
+		return -1
+	else:
+		return rows[0][0]
 
 def getversioninfo(path):
 	ver_parser = Dispatch('Scripting.FileSystemObject')
@@ -81,8 +91,9 @@ if __name__ == '__main__':
 		try:
 			#print("Checking for process"+proc_dict[id].name())
 			hash_temp=md5Checksum(proc_dict[id].exe())
+			#if getVT(hash_temp) == -1:
 			dbInsertp_q(hash_temp)
-			if dbsearch(hash_temp) == True:
+			if dbsearch(hash_temp) == True and getVT(hash_temp) > 4:
 				print("Killing process"+proc_dict[id].name())
 				proc_dict[id].kill()
 			else:
@@ -93,3 +104,4 @@ if __name__ == '__main__':
 			#print(e)
 			#print(proc_dict[id].name())
 			pass
+	print("Process parse complete")
