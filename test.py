@@ -4,6 +4,7 @@ import csv
 import sys
 import sqlite3
 
+
 class GetOutOfLoop( Exception ):
     pass
 
