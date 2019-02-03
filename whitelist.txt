@@ -1,0 +1,48 @@
+C:\Windows\System32\ntoskrnl.exe
+opera.exe
+notepad++.exe
+AppleMobileDeviceHelper.exe
+cmd.exe
+RuntimeBroker.exe
+sihost.exe
+dllhost.exe
+explorer.exe
+iTunesHelper.exe
+ETDCtrl.exe
+DpAgent.exe
+SkypeBackgroundHost.exe
+svchost.exe
+ShellExperienceHost.exe
+DPAgent.exe
+igfxEM.exe
+C:\Windows\System32\conhost.exe
+backgroundTaskHost.exe
+distnoted.exe
+SkypeApp.exe
+ApplicationFrameHost.exe
+C:\Program Files\Intel\SUR\QUEENCREEK\x64\esrv.exe
+C:\Users\ajayk\AppData\Local\Programs\Python\Python37-32\python.exe
+C:\Program Files (x86)\HP\HPAudioSwitch\HPAudioSwitch.exe
+C:\Program Files (x86)\Common Files\Java\Java Update\jusched.exe
+C:\Program Files\Rainmeter\Rainmeter.exe
+iTunes.exe
+WmiPrvSE.exe
+CoolSense.exe
+DB Browser for SQLite.exe
+ShellExperienceHost.exe
+SkypeBackgroundHost.exe
+SearchUI.exe
+Microsoft.Photos.exe
+SettingSyncHost.exe
+LockApp.exe
+opera_crashreporter.exe
+esif_assist_64.exe
+Video.UI.exe
+SystemSettings.exe
+DSATray.exe
+SkypeBridge.exe
+RtkNGUI64.exe
+SearchFilterHost.exe
+SearchProtocolHost.exe
+smartscreen.exe
+opera_autoupdate.exe
