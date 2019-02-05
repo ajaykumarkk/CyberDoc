@@ -26,6 +26,9 @@ reconstruction) and Imp Hash Comparison.
 
 4. sqlite3
 
+5. Pefile
+
+6. Doc convert exe
 
 ### Run Notes:
 
