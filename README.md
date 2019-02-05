@@ -14,3 +14,19 @@ endpoint security application which protects us against malicious internet traff
 protect from unknown malwares by using techniques like CDR(Content Disarming and
 reconstruction) and Imp Hash Comparison. 
 
+### Pre-Req:
+
+  Python packages to be installed
+  
+1. Psutil
+
+2. Watchdog
+
+3. Requests
+
+4. sqlite3
+
+
+### Run Notes:
+
+    Python processextract.py
