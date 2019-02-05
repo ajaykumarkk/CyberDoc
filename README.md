@@ -3,7 +3,7 @@
 Python based Tool for basic signature based Malware detection in drives,running process and some other critical sytem locations.
 
 
-##Intoduction:
+ ## Intoduction:
 
   People use computers for all kind of activities: online gaming, shopping, entertainment,
 emails, face book, study, research, etc. At the same time, the risk of infection by malicious
