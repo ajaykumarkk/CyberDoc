@@ -28,7 +28,7 @@ reconstruction) and Imp Hash Comparison.
 
 5. Pefile
 
-6. Doc convert exe
+6. Doc convert exe with configured
 
 ### Run Notes:
 
