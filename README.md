@@ -13,3 +13,4 @@ most antivirus solutions do not offer process based protection. Our intent is to
 endpoint security application which protects us against malicious internet traffic and also
 protect from unknown malwares by using techniques like CDR(Content Disarming and
 reconstruction) and Imp Hash Comparison. 
+
