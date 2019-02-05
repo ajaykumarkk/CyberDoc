@@ -6,6 +6,7 @@ import time
 import os 
 import os.path 
 from cdr import *
+import pefile
 
 class MyHandler(FileSystemEventHandler):
 	def on_any_event(self, event):
@@ -19,9 +20,13 @@ class MyHandler(FileSystemEventHandler):
 			if pos == -1:
 				insert_fe(text,h,event.event_type)
 				if extension==".exe":
-					if check_Imphash(h) != False :
-						print("Imp hash Malware found"+check_Imphash(h))
-						updatefhash(h,66,10,0)
+					try:
+						pe=pefile.PE(text)
+						if check_Imphash(pe.get_imphash()) != False :
+							print("Imp hash Malware found"+check_Imphash(h))
+							updatefhash(h,66,10,0)
+					except:
+						pass
 			elif pos < 4:
 				print("Not mailicious")
 				insert_fe(text,h,event.event_type)
