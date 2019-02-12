@@ -30,6 +30,4 @@ reconstruction) and Imp Hash Comparison.
 
 6. Doc convert exe with path configured
 
-### Run Notes:
 
-    Python processextract.py
